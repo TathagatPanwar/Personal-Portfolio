@@ -330,13 +330,31 @@
       <section id="contact" class="contact">
         <h2>Get in Touch</h2>
         <p>I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
-        <form>
-          <input type="text" placeholder="Name" required />
-          <input type="email" placeholder="Email" required />
-          <textarea placeholder="Message" required></textarea>
+        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="1072c49b-930a-45ce-814d-96b267aea9ca">
+          <input type="text" name="name" placeholder="Name" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <textarea name="message" placeholder="Message" required></textarea>
           <button type="submit">Send Message</button>
         </form>
+        <!-- Confirmation message (hidden by default) -->
+        <div id="confirmationMessage" style="display: none; margin-top: 20px; padding: 20px; background-color: #edf6f9; border: 1px solid #83c5be; border-radius: 8px;">
+          <h3 style="color: #006d77; margin-bottom: 10px;">Thank You!</h3>
+          <p style="color: #83c5be;">Your message has been sent successfully. I'll get back to you soon!</p>
+        </div>
       </section>
     </main>
+
+    <script>
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
+        // Let the form submit normally
+        setTimeout(function() {
+          // Hide the form
+          document.getElementById('contactForm').style.display = 'none';
+          // Show the confirmation message
+          document.getElementById('confirmationMessage').style.display = 'block';
+        }, 1000);
+      });
+    </script>
   </body>
 </html>
