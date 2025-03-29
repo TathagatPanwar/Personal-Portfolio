@@ -34,6 +34,11 @@
       <div class="left">
         <a href="#top">Tathagat Panwar</a>
       </div>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
       <div class="right">
         <a href="#about">About</a>
         <a href="#work"
@@ -346,14 +351,37 @@
     </main>
 
     <script>
+      // Form submission handler
       document.getElementById('contactForm').addEventListener('submit', function(e) {
-        // Let the form submit normally
         setTimeout(function() {
-          // Hide the form
           document.getElementById('contactForm').style.display = 'none';
-          // Show the confirmation message
           document.getElementById('confirmationMessage').style.display = 'block';
         }, 1000);
+      });
+
+      // Mobile menu handler
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navRight = document.querySelector('.right');
+      
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        navRight.classList.toggle('active');
+      });
+
+      // Close menu when clicking a link
+      document.querySelectorAll('.right a').forEach(link => {
+        link.addEventListener('click', () => {
+          menuToggle.classList.remove('active');
+          navRight.classList.remove('active');
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.right') && !e.target.closest('.menu-toggle')) {
+          menuToggle.classList.remove('active');
+          navRight.classList.remove('active');
+        }
       });
     </script>
   </body>
